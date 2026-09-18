@@ -6,8 +6,6 @@ services:
     stdin_open: true
     tty: true
 
-    privileged: true
-
     environment:
       DISPLAY: ":0"
       WAYLAND_DISPLAY: "wayland-0"
@@ -19,6 +17,9 @@ services:
       - ros2_course_workspace:/home/student/ros2_ws
       - /mnt/wslg:/mnt/wslg
       - /mnt/wslg/.X11-unix:/tmp/.X11-unix
+
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
 
     restart: unless-stopped
 
