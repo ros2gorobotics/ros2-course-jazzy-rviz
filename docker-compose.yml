@@ -7,17 +7,15 @@ services:
     tty: true
 
     environment:
-      DISPLAY: ${DISPLAY}
-      WAYLAND_DISPLAY: ${WAYLAND_DISPLAY}
-      XDG_RUNTIME_DIR: /tmp/runtime-student
-      QT_QPA_PLATFORM: xcb
+      DISPLAY: ":0"
+      WAYLAND_DISPLAY: "wayland-0"
+      XDG_RUNTIME_DIR: "/run/user/1000"
+      QT_QPA_PLATFORM: "xcb"
       QT_X11_NO_MITSHM: "1"
 
     volumes:
       - ./workspace:/home/student/ros2_ws
-
-      # WSLg GUI
       - /mnt/wslg:/mnt/wslg
-      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg/.X11-unix:/tmp/.X11-unix
 
     restart: unless-stopped
