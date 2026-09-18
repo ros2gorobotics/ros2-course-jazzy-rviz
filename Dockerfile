@@ -3,7 +3,7 @@ FROM osrf/ros:jazzy-desktop
 ENV DEBIAN_FRONTEND=noninteractive
 
 # =========================
-# Install Ubuntu packages
+# Ubuntu + ROS2 Packages
 # =========================
 RUN apt-get update && apt-get install -y \
     python3-pip \
@@ -34,6 +34,8 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-xacro \
     ros-jazzy-rviz2 \
     ros-jazzy-micro-ros-agent \
+    ros-jazzy-ros-gz \
+    ros-jazzy-ros-gz-sim \
     && rm -rf /var/lib/apt/lists/*
 
 # =========================
@@ -42,7 +44,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install --break-system-packages platformio
 
 # =========================
-# Create student user
+# Student User
 # =========================
 RUN useradd -ms /bin/bash student && \
     usermod -aG dialout student && \
@@ -54,11 +56,10 @@ WORKDIR /home/student
 # =========================
 # ROS2 Workspace
 # =========================
-RUN mkdir -p /home/student/ros2_ws/src
+RUN mkdir -p ~/ros2_ws/src
 
 # =========================
-# Pre-download ESP32 PlatformIO packages
-# (ลดเวลารอนักเรียนครั้งแรก)
+# Pre-download ESP32 Platform
 # =========================
 RUN pio pkg install -g \
     -p espressif32 \
@@ -66,7 +67,7 @@ RUN pio pkg install -g \
     -t platformio/toolchain-xtensa-esp32 \
     -t platformio/tool-openocd-esp32
 
-# Source ROS2 automatically
+# Auto source ROS2
 RUN echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 
 COPY --chown=student:student entrypoint.sh /entrypoint.sh
