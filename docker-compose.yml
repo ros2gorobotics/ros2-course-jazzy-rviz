@@ -14,12 +14,14 @@ services:
       QT_X11_NO_MITSHM: "1"
 
     volumes:
-      - ./workspace:/home/student/ros2_ws
+      - ros2_course_workspace:/home/student/ros2_ws
       - /mnt/wslg:/mnt/wslg
       - /mnt/wslg/.X11-unix:/tmp/.X11-unix
-      
+
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
-  
 
     restart: unless-stopped
+
+volumes:
+  ros2_course_workspace:
