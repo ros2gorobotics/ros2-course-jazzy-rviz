@@ -1,6 +1,6 @@
 services:
   ros2:
-    image: ros2-course-jazzy-rviz:latest
+    image: ghcr.io/ros2gorobotics/ros2-course-jazzy-rviz:latest
     container_name: ros2_jazzy_rviz
 
     privileged: true
