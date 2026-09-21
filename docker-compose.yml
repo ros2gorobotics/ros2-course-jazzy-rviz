@@ -5,6 +5,9 @@ services:
 
     stdin_open: true
     tty: true
+    
+    # 1. เพิ่มโหมด privileged เพื่อให้มีสิทธิ์เข้าถึงฮาร์ดแวร์แบบไดนามิก
+    privileged: true 
 
     environment:
       DISPLAY: ":0"
@@ -17,9 +20,12 @@ services:
       - ros2_course_workspace:/home/student/ros2_ws
       - /mnt/wslg:/mnt/wslg
       - /mnt/wslg/.X11-unix:/tmp/.X11-unix
+      # 2. แมปโฟลเดอร์ /dev ทั้งหมดเข้ามา เพื่อให้มองเห็นอุปกรณ์ตอนเสียบสาย (Hot-plug)
+      - /dev:/dev
 
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+    # 3. ลบหรือคอมเมนต์ devices เดิมออกเพื่อไม่ให้เกิด Error ตอน Start
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
 
     restart: unless-stopped
 
