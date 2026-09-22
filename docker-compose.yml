@@ -10,9 +10,10 @@ services:
     privileged: true 
 
     environment:
-      DISPLAY: ":0"
-      WAYLAND_DISPLAY: "wayland-0"
-      XDG_RUNTIME_DIR: "/run/user/1000"
+      # ปรับให้ดึงค่าจากระบบของ WSL ก่อน หากไม่มีให้ใช้ค่าเริ่มต้น
+      DISPLAY: ${DISPLAY:-:0}
+      WAYLAND_DISPLAY: ${WAYLAND_DISPLAY:-wayland-0}
+      XDG_RUNTIME_DIR: ${XDG_RUNTIME_DIR:-/run/user/1000}
       QT_QPA_PLATFORM: "xcb"
       QT_X11_NO_MITSHM: "1"
 
@@ -22,6 +23,8 @@ services:
       - /mnt/wslg/.X11-unix:/tmp/.X11-unix
       # 2. แมปโฟลเดอร์ /dev ทั้งหมดเข้ามา เพื่อให้มองเห็นอุปกรณ์ตอนเสียบสาย (Hot-plug)
       - /dev:/dev
+      # แก้ไข: เพิ่ม /dev/shm กลับเข้ามาเพื่อป้องกันไม่ให้ GUI แครช
+      - /dev/shm:/dev/shm
 
     # 3. ลบหรือคอมเมนต์ devices เดิมออกเพื่อไม่ให้เกิด Error ตอน Start
     # devices:
