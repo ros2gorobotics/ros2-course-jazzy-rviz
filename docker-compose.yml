@@ -14,6 +14,9 @@ services:
     # 1. เพิ่มโหมด privileged เพื่อให้มีสิทธิ์เข้าถึงฮาร์ดแวร์แบบไดนามิก
     privileged: true 
 
+    ports:
+      - "8888:8888/udp"
+
     environment:
       # ปรับให้ดึงค่าจากระบบของ WSL ก่อน หากไม่มีให้ใช้ค่าเริ่มต้น
       DISPLAY: ${DISPLAY:-:0}
