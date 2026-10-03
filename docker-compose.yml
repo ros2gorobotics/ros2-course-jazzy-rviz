@@ -4,7 +4,7 @@ services:
     container_name: ros2_jazzy_rviz
 
     # --- ส่วนที่ต้องเพิ่มเข้าไป ---
-    network_mode: "host"
+    #network_mode: "host"
     ipc: host
     # ------------------------
 
