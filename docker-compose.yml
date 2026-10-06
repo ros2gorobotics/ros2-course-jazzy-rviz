@@ -19,6 +19,7 @@ services:
 
     environment:
       # ปรับให้ดึงค่าจากระบบของ WSL ก่อน หากไม่มีให้ใช้ค่าเริ่มต้น
+      # แก้ไข Error creating runtime directory '/run/user/1000' (Permission denied) ตอน rviz2 เริ่มทำงาน
       DISPLAY: ${DISPLAY:-:0}
       WAYLAND_DISPLAY: ${WAYLAND_DISPLAY:-wayland-0}
       XDG_RUNTIME_DIR: /tmp/runtime-student
