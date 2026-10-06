@@ -21,7 +21,7 @@ services:
       # ปรับให้ดึงค่าจากระบบของ WSL ก่อน หากไม่มีให้ใช้ค่าเริ่มต้น
       DISPLAY: ${DISPLAY:-:0}
       WAYLAND_DISPLAY: ${WAYLAND_DISPLAY:-wayland-0}
-      XDG_RUNTIME_DIR: ${XDG_RUNTIME_DIR:-/run/user/1000}
+      XDG_RUNTIME_DIR: /tmp/runtime-student
       QT_QPA_PLATFORM: "xcb"
       QT_X11_NO_MITSHM: "1"
 
