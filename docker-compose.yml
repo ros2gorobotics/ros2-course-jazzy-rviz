@@ -24,6 +24,9 @@ services:
       XDG_RUNTIME_DIR: /tmp/runtime-student
       QT_QPA_PLATFORM: "xcb"
       QT_X11_NO_MITSHM: "1"
+      
+    tmpfs:
+      - /tmp/runtime-student:uid=1000,gid=1000,mode=700  
 
     volumes:
       - ros2_course_workspace:/home/student/ros2_ws
