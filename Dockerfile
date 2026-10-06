@@ -37,6 +37,7 @@ RUN apt-get update && apt-get install -y \
     ros-jazzy-rviz2 \
     ros-jazzy-ros-gz \
     ros-jazzy-ros-gz-sim \
+    ros-jazzy-rmw-cyclonedds-cpp \
     && rm -rf /var/lib/apt/lists/*
 
 # =========================================================
@@ -84,7 +85,8 @@ RUN sudo apt-get update && \
     -y \
     --skip-keys microxrcedds_agent \
     --skip-keys micro_ros_agent \
-    --skip-keys clang-tidy
+    --skip-keys clang-tidy \
+    && sudo rm -rf /var/lib/apt/lists/*
 
 # =========================================================
 # Build micro-ROS setup
@@ -145,6 +147,7 @@ RUN echo "source /opt/ros/jazzy/setup.bash" >> /home/student/.bashrc && \
 # Entrypoint
 # =========================================================
 COPY --chown=student:student entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 
