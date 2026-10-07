@@ -26,9 +26,6 @@ services:
       QT_QPA_PLATFORM: "xcb"
       QT_X11_NO_MITSHM: "1"
 
-      # --- ส่วนที่เพิ่มเข้ามาใหม่สำหรับ CycloneDDS (Unicast) ---
-      RMW_IMPLEMENTATION: "rmw_cyclonedds_cpp"
-      CYCLONEDDS_URI: "file:///tmp/cyclonedds.xml"
       
     tmpfs:
       - /tmp/runtime-student:uid=1001,gid=1001,mode=700
